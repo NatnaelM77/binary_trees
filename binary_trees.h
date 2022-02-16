@@ -54,5 +54,19 @@ int binary_tree_is_root(const binary_tree_t *);
 /* binary_tree_preorder */
 void binary_tree_preorder(const binary_tree_t *, void (*)(int));
 
+/* binary_tree_inorder */
+void binary_tree_inorder(const binary_tree_t *, void (*)(int));
+
+/* binary_tree_postorder */
+void binary_tree_postorder(const binary_tree_t *, void (*)(int));
+
+/* binary_tree_height */
+size_t binary_tree_height(const binary_tree_t *);
+
+/* binary_tree_depth */
+size_t binary_tree_depth(const binary_tree_t *);
+
+/* binary_tree_size */
+size_t binary_tree_size(const binary_tree_t *);
 
 #endif /* BINARY_TREES_BINARY_TREES_H */
