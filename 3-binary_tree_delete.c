@@ -7,38 +7,48 @@
 
 void binary_tree_delete(binary_tree_t *tree)
 {
+	binary_tree_t *root = tree;
 	binary_tree_t *node;
-	binary_tree_t *parent;
-	binary_tree_t *child;
+	binary_tree_t **tmp;
 
 	if (tree)
 	{
-		node = tree->left;
-		while (node)
-		{
-			if (node->left == NULL)
-			{
-				node->parent->left = NULL;
-				parent = node->parent;
-				while (parent)
-				{
-					if (parent->right == NULL)
-					{
-						parent->parent->right = NULL;
-						free(parent);
-						parent = node->parent;
-					}
-					else
-					{
-						parent = parent->right;
-					}
+		tmp = &tree->left;
+		while (tree) {
+			if (tree->left) {
+				tmp = &tree->left;
+				tree = tree->left;
+			} else {
+				if (tree->right) {
+					tmp = &tree->right;
+					tree = tree->right;
+				} else {
+					node = tree->parent->parent;
+					free(tree);
+					tree = node;
+					*tmp = NULL;
 				}
-				free(node);
-			}
-			else
-			{
-				node = node->left;
 			}
 		}
+		tree = root;
+		tmp = &tree->right;
+		while (tree) {
+			if (tree->right) {
+				tmp = &tree->right;
+				tree = tree->right;
+			} else {
+				if (tree->left) {
+					tmp = &tree->left;
+					tree = tree->left;
+				} else {
+					node = tree->parent->parent;
+					free(tree);
+					tree = node;
+					*tmp = NULL;
+				}
+			}
+		}
+		free(root);
+		root = NULL;
 	}
 }
