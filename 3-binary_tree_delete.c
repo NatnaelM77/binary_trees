@@ -15,14 +15,20 @@ void binary_tree_delete(binary_tree_t *tree)
 	{
 		tmp = &tree->left;
 		while (tree) {
-			if (tree->left) {
+			if (tree->left)
+			{
 				tmp = &tree->left;
 				tree = tree->left;
-			} else {
-				if (tree->right) {
+			}
+			else
+			{
+				if (tree->right)
+				{
 					tmp = &tree->right;
 					tree = tree->right;
-				} else {
+				}
+				else
+				{
 					node = tree->parent->parent;
 					free(tree);
 					tree = node;
@@ -32,15 +38,22 @@ void binary_tree_delete(binary_tree_t *tree)
 		}
 		tree = root;
 		tmp = &tree->right;
-		while (tree) {
-			if (tree->right) {
+		while (tree)
+		{
+			if (tree->right)
+			{
 				tmp = &tree->right;
 				tree = tree->right;
-			} else {
-				if (tree->left) {
+			}
+			else
+			{
+				if (tree->left)
+				{
 					tmp = &tree->left;
 					tree = tree->left;
-				} else {
+				}
+				else
+				{
 					node = tree->parent->parent;
 					free(tree);
 					tree = node;
@@ -48,7 +61,5 @@ void binary_tree_delete(binary_tree_t *tree)
 				}
 			}
 		}
-		free(root);
-		root = NULL;
 	}
 }
